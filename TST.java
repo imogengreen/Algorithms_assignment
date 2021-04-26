@@ -1,5 +1,13 @@
 //resource: https://algs4.cs.princeton.edu/52trie/TST.java.html
 
+/**
+ * This class contains methods that implement the TST data structure in order to
+ * find the bus stop name
+ * 
+ * @author Alexandra Ichim
+ * @version HT 2021
+ */
+
 public class TST<Value> {
 
 	private int n;
@@ -81,7 +89,6 @@ public class TST<Value> {
 		return x;
 	}
 
-	// string from input by user with a couple of characters
 	public Iterable<String> keyWithPrefix(String prefix) {
 
 		if (prefix == null) {
