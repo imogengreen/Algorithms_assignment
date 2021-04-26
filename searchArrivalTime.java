@@ -48,7 +48,7 @@ public class searchArrivalTime {
                     
                     // now, compare each of the three elements to make sure that the time is valid
                     // (max time 23:59:59)
-                    if ((arrivals[0] < 24) || (arrivals[1] < 60) || (arrivals[2] < 60)) {
+                    if ((arrivals[0] < 24) && (arrivals[1] < 60) && (arrivals[2] < 60)) {
                         // rejoice! Continue doing what you wanted to do; namely, create our object to be stored in ArrayList
                         scheduleInformation newRoute = scheduleDetails(scheduleInfo);   //pass all the information
                         
