@@ -2,6 +2,14 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * This class contains methods that implement the queue for the TST data
+ * structure in order to find the bus stop name
+ * 
+ * @author Alexandra Ichim
+ * @version HT 2021
+ */
+
 public class Queue<Item> implements Iterable<Item> {
 
 	private Node<Item> first;
@@ -34,13 +42,15 @@ public class Queue<Item> implements Iterable<Item> {
 			oldLast.next = last;
 		n++;
 	}
-	
+
 	public Item dequeue() {
-		if(isEmpty()) throw new NoSuchElementException("queue underflow");
+		if (isEmpty())
+			throw new NoSuchElementException("queue underflow");
 		Item item = first.item;
 		first = first.next;
-		n --;
-		if(isEmpty()) last = null;
+		n--;
+		if (isEmpty())
+			last = null;
 		return item;
 	}
 
