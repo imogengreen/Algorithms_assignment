@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-//import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
 
 //must take the second column as this contains our arrival times
 public class searchArrivalTime{
@@ -21,19 +21,12 @@ public class searchArrivalTime{
                     //need to check if arrival time is valid (at index 1 in file)
                     String checkTime = scheduleInfo[1];
                     //System.out.println(checkTime);
+                    
                     String[] arrivalTimeCheck = checkTime.split(":");   //creates an array with hh in index 0, mm in index 1, ss in index 2
-                    
-
-                    //problem seems to be that our array is not string literal (no quotation marks) so we need to find a way around this
-                    
-
-
                     //System.out.println(Arrays.toString(arrivalTimeCheck));
                      
                     double[] arrivals = new double[arrivalTimeCheck.length];  //will be an array of three elements only, but as integers for comparison
                     try{
-
-                    
                         //to compare times, we need to parse to integers to check our HH:MM:SS are valid
                         for (int i=0; i<arrivalTimeCheck.length; i++){
                             arrivals[i] = Double.parseDouble(arrivalTimeCheck[i]);
@@ -44,17 +37,26 @@ public class searchArrivalTime{
                         System.out.println("not a number");
                     }
                     
-                    
-                    //now, compare each of the three elements to make sure that the time is valid
-                    if ((arrivals[0] >= 24) || (arrivals[1] >= 60) || (arrivals[2] >= 60))
+                    //create our HashMap
+                    HashMap<String, scheduleInformation> allSchedules = new HashMap<String, scheduleInformation>();
+                    //now, compare each of the three elements to make sure that the time is valid (max time 23:59:59)
+                   if ((arrivals[0] < 24) || (arrivals[1] < 60) || (arrivals[2] < 60))
                     {
-                        //remove line from the file as this time is not valid --> do this by creating a new file
+                        //rejoice! Continue doing what you wanted to do; namely, create and add to the data structure
+                        scheduleInformation newRoute = new scheduleInformation();
+                        newRoute.tripID = scheduleInfo[0];
+                        //newRoute.arrivalTime = scheduleInfo[1];
+                        newRoute.departureTime = scheduleInfo[2];
+                        newRoute.stopID = scheduleInfo[3];
+                        newRoute.stopSequence = scheduleInfo[4];
+                        newRoute.stopHeadsign = scheduleInfo[5];
+                        newRoute.pickupType = scheduleInfo[6];
+                        newRoute.dropoffType = scheduleInfo[7];
+                        newRoute.shapeDistanceTravelled = scheduleInfo[8];
 
+                        allSchedules.put(checkTime, newRoute);  //adds the route to the hashmap
                     }
-                    //otherwise, rejoice! Continue doing what you wanted to do; namely, add to the data structure and SEARCH for that bad boy
-                    
-                    
-                    line = br.readLine();
+                    //otherwise, time is not valid --> do not add to hashmap 
                }
                br.close();
            }
@@ -64,6 +66,10 @@ public class searchArrivalTime{
        }
 
     }
+    /*public static File removeFromFile(String filename){
+        File file = new File(filename);
+        return file;
+    }*/
     public static void main (String[] args){
         searchFile("stop_times.txt");
     }
