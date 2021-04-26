@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.ArrayList;
+//import java.util.Scanner;
 
 //must take the second column as this contains our arrival times
 public class searchArrivalTime {
@@ -42,7 +43,7 @@ public class searchArrivalTime {
                         //System.out.println("Parsed!");
                     } 
                     catch (NumberFormatException e) {
-                        System.out.println("Not a number");
+                        //System.out.println("Not a number");
                     }
                     
                     // now, compare each of the three elements to make sure that the time is valid
@@ -63,10 +64,18 @@ public class searchArrivalTime {
                         }
                     }
                     // otherwise, time is not valid --> do not add to hashmap; read next line
-                
                     line = br.readLine();
                 }
                 br.close();
+
+                /*** Rough user input handling code to return the info you need from the arrival time you input (the key)
+                Scanner scanner = new Scanner(System.in);
+                    if (scanner.hasNext()){
+                        String userInput = scanner.next();
+                        allSchedules.get(userInput);        //this gets the value stored at the key
+                    }
+                    scanner.close();    
+                    ***/ 
             } 
             catch (Exception e) {
                 System.out.println(e);
