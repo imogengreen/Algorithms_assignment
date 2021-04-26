@@ -10,7 +10,8 @@ public class scheduleInformation {
     public String dropoffType;
     public String shapeDistanceTravelled;
     
-    scheduleInformation(){
+    scheduleInformation(String tripID, String arrivalTime, String departureTime, String stopID, 
+    String stopSequence, String stopHeadsign, String pickupType, String dropoffType, String shapeDistanceTravelled){
         this.tripID = tripID;
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
