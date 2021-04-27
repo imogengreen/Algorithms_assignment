@@ -1,5 +1,11 @@
+/*
+* @author Imogen Green
+* @Hilary Term 2021
+*/
+
 public class scheduleInformation {
-    //this is to contain all the information regarding a particular trip
+    //this is to contain all the information regarding a particular trip (our scheduleInformation object)
+    //this will be stored in an ArrayList of objects
     public String tripID;
     public String arrivalTime;
     public String departureTime;
@@ -46,7 +52,7 @@ public class scheduleInformation {
     public String getDropoffType(){
         return this.dropoffType;
     }
-    public String getShapreDistanceTravelled(){
+    public String getShapeDistanceTravelled(){
         return this.shapeDistanceTravelled;
     }
 }
