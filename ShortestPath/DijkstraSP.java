@@ -31,11 +31,17 @@ public class DijkstraSP {
 	     EdgeWeightedDigraph  SP= new EdgeWeightedDigraph(V);
 	     readForEdges(SP);
 	     
-	   // double[] distTo=dijkstraShortestPath(SP, stop_idFrom);
-	     
-	          
+	    DijkstraSP dij= new DijkstraSP();
+	    dij.dijkstraShortestPath(SP, stop_idFrom);
+	    System.out.println("The shortest path cost between two stops is :" + dij.distTo(stop_idTo));
+	    // double[] distTo=dijkstraShortestPath(SP, stop_idFrom);
+	   //  System.out.print(distTo(stop_idTo));
+	   // dij.pathTo(stop_idFrom);
+	    
 	}
 	
+	
+
 	private static void readForEdges(EdgeWeightedDigraph SP) {
 		// TODO Auto-generated method stub
 		int transfer_Type=0;
@@ -194,4 +200,10 @@ public class DijkstraSP {
 			}
 		}
 	}
+	
+	public  double distTo(int v) {
+        return distTo[v];
+    }
+	
+	 
 }
