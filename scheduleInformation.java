@@ -1,6 +1,6 @@
 /*
-* @author Imogen Green
-* @Hilary Term 2021
+*   @author Imogen Green
+*   @Hilary Term 2021
 */
 
 public class scheduleInformation {

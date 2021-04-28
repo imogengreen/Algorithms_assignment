@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Collections;
 //import java.util.Scanner;
 
 //must take the second column as this contains our arrival times
@@ -68,9 +69,12 @@ public class searchArrivalTime {
     public static void getTripInformation(HashMap <String, ArrayList<scheduleInformation>> allSchedules, String userInputTime){
         //need to get the ArrayList stored at the key userInputTime (recall our keys are String checkTime)
         ArrayList<scheduleInformation> information = allSchedules.get(userInputTime);
+        Collections.sort(information, new sortByTripID());
         for (int i=0; i<information.size(); i++){           //takes us through our ArrayList
             scheduleInformation temp = information.get(i);  //create a temporary place to store all of this 
 
+            
+            //this just prints out all of the information about the trip
             System.out.println("Trip ID: " + temp.getTripID());
             System.out.println("Arrival time: " + temp.getArrivalTime());
             System.out.println("Departure time: " + temp.getDepartureTime());
@@ -80,11 +84,14 @@ public class searchArrivalTime {
             System.out.println("Pickup type: " + temp.getPickupType());
             System.out.println("Dropoff type: " + temp.getDropoffType());
             System.out.println("Shape distance travelled: " + temp.getShapeDistanceTravelled());
+            System.out.println();       //prints an extra line to space out the information
+            
         }
     }
 
     public static void addToMap(String checkTime, String[] scheduleInfo, HashMap<String, ArrayList<scheduleInformation>> allSchedules){
-        scheduleInformation newRoute = scheduleDetails(scheduleInfo);   //pass all the information
+        
+        scheduleInformation newRoute = scheduleDetails(scheduleInfo);   //pass all the information to instantiate object
         
         // NB: if we don't check for the presence of the key, our value will be overwritten --> create an ArrayList to store objects
         ArrayList<scheduleInformation> scheduleList;                
@@ -111,6 +118,7 @@ public class searchArrivalTime {
     }
 
 
+    //throws a NullPointerException if there is not a valid time passed in
     public static void main(String[] args) {
         String userInputTime = "";
         /*** Rough user input handling code to return the info you need from the arrival time you input (the key)
@@ -121,6 +129,6 @@ public class searchArrivalTime {
         }
         scanner.close();    
         ***/ 
-        searchFile("stop_times.txt", userInputTime);
+        searchFile("stop_times.txt",userInputTime);
     }
 }
