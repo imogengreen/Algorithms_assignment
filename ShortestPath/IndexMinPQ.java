@@ -1,3 +1,12 @@
+/**
+ * This class contains the information about Min Priority Queue and contains functions for its implementations 
+ * The class has been based of the book by Robert Sedgewick and Kevin Wayne
+ * 
+ * @authors Khushboo Jain
+ *          
+ * @version HT 2021
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

@@ -1,3 +1,13 @@
+/**
+ * This class contains the information about an edge object and function to getCost , 
+ * and stop ids from and to of an edge 
+ * The class has been based of the book by Robert Sedgewick and Kevin Wayne
+ * 
+ * @authors Khushboo Jain
+ *          
+ * @version HT 2021
+ */
+
 public class DirectedEdge {
 	
 		double cost;

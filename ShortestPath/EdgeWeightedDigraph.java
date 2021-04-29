@@ -1,3 +1,13 @@
+/**
+ * This class contains the information about an EdgeWeightedDigraph it intialises the 
+ * graph based on the vertices entered and adds edges accordingly 
+ * The class has been based of the book by Robert Sedgewick and Kevin Wayne
+ * 
+ * @authors Khushboo Jain
+ *          
+ * @version HT 2021
+ */
+
 import java.util.HashSet;
 
 public class EdgeWeightedDigraph {
