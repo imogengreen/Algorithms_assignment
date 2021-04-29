@@ -1,11 +1,12 @@
-/*
-*   @author Imogen Green
-*   @Hilary Term 2021
+/** 
+*   @author Imogen Green, Hilary Term 2021
 */
 
 public class scheduleInformation {
-    //this is to contain all the information regarding a particular trip (our scheduleInformation object)
-    //this will be stored in an ArrayList of objects
+    /**
+     *  this is to contain all the information regarding a particular trip (our scheduleInformation object)
+        will be stored in an ArrayList of objects
+    */
     public String tripID;
     public String arrivalTime;
     public String departureTime;
@@ -15,7 +16,10 @@ public class scheduleInformation {
     public String pickupType;
     public String dropoffType;
     public String shapeDistanceTravelled;
-    
+
+    /**
+     * Our scheduleInformation constructor
+     */
     scheduleInformation(String tripID, String arrivalTime, String departureTime, String stopID, 
     String stopSequence, String stopHeadsign, String pickupType, String dropoffType, String shapeDistanceTravelled){
         this.tripID = tripID;
