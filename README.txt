@@ -10,9 +10,10 @@ Group members:
 Summary of contributions:
 Part 1: 
 - 
+-Alexandra Ichim(DijkstraSP.java)
 
 Part 2:
--
+- Alexandra Ichim(TST.java, searchBusStop.java, Queue.java, busStopInfo.java)
 
 Part 3:
 - Imogen Green (searchArrivalTime.java, scheduleInformation.java, sortByTripID.java)
@@ -22,7 +23,7 @@ Part 4:
 
 Design document:
 -
--
+- Alexandra Ichim (part 2)
 - Imogen Green (part 3)
 
 Demonstration recording:
