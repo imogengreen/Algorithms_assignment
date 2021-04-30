@@ -1,11 +1,9 @@
-
 /**
  * This class contains methods that implement the cost of going from the 
  * start bus stop to the destination bus stop and lists the bus stops en route
  * 
  * @authors Khushboo Jain(implemented all the classes in relation to question 1)
- *          Alexandra Ichim(printed out bus stop routes,created methods enterStartBusStop() 
- *          and enterDesttBusStop())
+ *          Alexandra Ichim(printed out bus stop routes)
  * @version HT 2021
  */
 
@@ -15,11 +13,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
+
 /**
- * //https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/DijkstraSP.java.html
- * The code has been based of the book by Robert Sedgewick and Kevin Wayne This
- * class implements the Djikstra algorithm for finding the shortest path between
- * two nodes/ vertices as they are no negative cycles
+//https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/DijkstraSP.java.html
+ * The code has been based of the book by Robert Sedgewick and Kevin Wayne
+ * This class implements the Djikstra algorithm for finding the shortest
+ * path between two nodes/ vertices as  they are no negative cycles  
  * 
  *
  */
@@ -32,36 +31,10 @@ public class DijkstraSP {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// V stands for vertices or number of nodes in the graph (number of stops)
+		//V stands for vertices or number of nodes in the graph (number of stops)
 		int V = countNumberOfVertices();
-
-		int startBusStop = enterStartBusStop();
-		int destBusStop = enterDesttBusStop();
-		// the shortest path graph object is created
-		EdgeWeightedDigraph SP = new EdgeWeightedDigraph(V);
-
-		// adding the edges to the graph
-		readForEdges(SP);
-
-		DijkstraSP dij = new DijkstraSP();
-
-		// finds the cost / distance of the shortest path
-		dij.dijkstraShortestPath(SP, startBusStop);
-		System.out.println("The shortest path cost between two stops is :" + dij.distTo(destBusStop));
-		dij.pathTo(destBusStop);
-
-	}
-
-	/**
-	 * @param void
-	 * @return int: returns bus stop id of the stop you wish to
-	 *              start from.
-	 * @throws IOException
-	 */
-	public static int enterStartBusStop() {
-
 		// to get user input as in for the user to enter the name of beginning stop
-		// with some basic error handing so the user doesn't use numerics or so
+		//with some basic error handing so the user doesn't use numerics or so  
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the beginning bus stop");
 		while (!input.hasNext("[A-Za-z]+")) {
@@ -69,49 +42,54 @@ public class DijkstraSP {
 			input.next();
 		}
 		String stop_From = input.nextLine();
-		// finds stop_id related to the name entered by the user
+		//finds stop_id related to the name entered by the user  
 		int stop_idFrom = findStop_ID(stop_From);
-		return stop_idFrom;
-	}
-
-	/**
-	 * @param void
-	 * @return int: returns the destination bus stop of the route
-	 * @throws IOException
-	 */
-	public static int enterDesttBusStop() {
-
-		Scanner input = new Scanner(System.in);
-
-		// to get user input as in for the user to enter the name of final/destination
-		// stop
-		// with some basic error handing so the user doesn't use numerics or so
+		
+		
+		// to get user input as in for the user to enter the name of final/destination stop
+	    //with some basic error handing so the user doesn't use numerics or so  
 		System.out.println("Enter the end bus stop");
 		while (!input.hasNext("[A-Za-z]+")) {
 			System.out.println("Please enter a valid value.");
 			input.next();
 		}
 		String stop_To = input.nextLine();
-		// finds stop_id related to the name entered by the user
+		//finds stop_id related to the name entered by the user  
 		int stop_idTo = findStop_ID(stop_To);
-		return stop_idTo;
+		
+
+		//the shortest path graph object is created 
+		EdgeWeightedDigraph SP = new EdgeWeightedDigraph(V);
+		
+		// adding the edges to the graph  
+		readForEdges(SP);
+
+		DijkstraSP dij = new DijkstraSP();
+		
+		
+		//finds the cost / distance of the shortest path 
+		dij.dijkstraShortestPath(SP, stop_idFrom);
+		System.out.println("The shortest path cost between two stops is :" + dij.distTo(stop_idTo));
+		dij.pathTo(stop_idTo);
+
 	}
 
 	/**
-	 * @param EdgeWeightedDigraph SP : the graph object
-	 * @return void: the function reads the two files transfers.txt and
-	 *         stop_times.txt and accordingly adds the edges
+	 * @param EdgeWeightedDigraph SP : the graph object 
+	 * @return void: the function reads the two files transfers.txt and 
+	 *               stop_times.txt and accordingly adds the edges  
 	 * @throws IOException
 	 */
+	
 
 	private static void readForEdges(EdgeWeightedDigraph SP) {
 		int transfer_Type = 0;
 		double transfer_Time = 0;
 		double cost = 0;
 
-		// here the transfers.txt contains the from and to stop IDs
-		// and also cost so accordingly the edges are being added between two
-		// stops. There are two kinds of cost based on transfer type
+		//here the transfers.txt contains the from and to stop IDs
+		//and also cost so accordingly the edges are being added between two 
+		//stops. There are two kinds of cost based on transfer type 
 		// 2 for transfer type and minimum time /100
 
 		File file = new File("transfers.txt");
@@ -147,10 +125,10 @@ public class DijkstraSP {
 
 		// adding edges from stop_times.txt
 		// here the edges are based on comparison of the trip_ids
-		// if two consecutive trip ids match
+		//if two consecutive trip ids match 
 		// then the previous stop id is the from stop
-		// the current stop id is the to stop
-		// cost is a constant of 1
+		// the current stop id is the to stop 
+		// cost is a constant of 1 
 		File file1 = new File("stop_times.txt");
 		try {
 			Scanner scanner2 = new Scanner(file1);
@@ -181,9 +159,9 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param String stop_Name : the stop Name
-	 * @return int stop_id: this function returns the stop_id corresponding to the
-	 *         stop name after searching through the stops.txt file
+	 * @param String stop_Name : the stop Name 
+	 * @return int stop_id: this function returns the stop_id corresponding to the stop name  
+	 *                      after searching through the stops.txt file 
 	 * @throws IOException
 	 */
 
@@ -214,8 +192,8 @@ public class DijkstraSP {
 
 	/**
 	 * 
-	 * @return int max: this function returns the max id number of vertice or
-	 *         stop_id so the graph can be made
+	 * @return int max: this function returns the max id number of vertice or stop_id so the 
+	 *                  graph can be made 
 	 * @throws IOException
 	 */
 
@@ -246,11 +224,11 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param EdgeWeightedDigraph digraph: the graph object
-	 * @param int                 s: the beginning stop Name
-	 * @return int stop_id: this function returns an array which consist of
-	 *         distances from the given source or beginning node to the other nodes
-	 *         /vertices/stops
+	 * @param EdgeWeightedDigraph digraph: the graph object 
+	 * @param int s: the beginning stop Name 
+	 * @return int stop_id: this function returns an array which consist of distances
+	 *                      from the given source or beginning node to the 
+	 *                      other nodes /vertices/stops
 	 */
 
 	public double[] dijkstraShortestPath(EdgeWeightedDigraph digraph, int s) {
@@ -277,9 +255,9 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param DirectedEdge e: its the edge
+	 * @param DirectedEdge e: its the edge  
 	 * 
-	 * @return void: this function relaxes the edges accordingly
+	 * @return void: this function relaxes the edges accordingly 
 	 */
 
 	public void relax(DirectedEdge e) {
@@ -301,10 +279,10 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param int v: the final / destination stopId
+	 * @param int v: the final / destination stopId 
 	 *
-	 * @return double distTo[v]: This function returns the distance to the
-	 *         destination stop
+	 * @return  double distTo[v]: This function returns the distance to the 
+	 *                            destination stop 
 	 */
 
 	public double distTo(int v) {
@@ -312,7 +290,7 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param v: the destination bus stop
+	 * @param v: the destination bus stop 
 	 * @return void: the function checks to see whether or not the bus stop is valid
 	 * @throws IOException
 	 */
@@ -323,9 +301,9 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param v: the destination bus stop
-	 * @return boolean: checking to see if there exists a path between the start and
-	 *         destination bus stop
+	 * @param v: the destination bus stop 
+	 * @return boolean: checking to see if there exists a path between the start and 
+	 *                  destination bus stop
 	 * @throws IOException
 	 */
 	public boolean hasPathTo(int v) {
@@ -334,9 +312,9 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * @param v: the destination bus stop
-	 * @return void: the function prints out all the bus stops on the route from the
-	 *         starting bus stop to the destination bus stop
+	 * @param v: the destination bus stop 
+	 * @return void: the function prints out all the bus stops on the route from the 
+	 *               starting bus stop to the destination bus stop
 	 * @throws IOException
 	 */
 	public void pathTo(int v) {
@@ -348,7 +326,7 @@ public class DijkstraSP {
 			path.push(e);
 		}
 
-		// printing out info about each of the bus stop on the route
+		//printing out info about each of the bus stop on the route
 		while (path.size() > 1) {
 			if (hashmap.containsKey(path.peek().getFrom())) {
 				System.out.println(
@@ -358,7 +336,7 @@ public class DijkstraSP {
 			}
 		}
 
-		// printing out the stop information before we reach destination stop
+		//printing out the stop information before we reach destination stop
 		DirectedEdge lastEdge = path.pop();
 		if (hashmap.containsKey(lastEdge.getFrom())) {
 			System.out.println("Stop name: " + hashmap.get(lastEdge.getFrom()) + " Stop id: " + lastEdge.getFrom());
@@ -366,7 +344,7 @@ public class DijkstraSP {
 			System.out.println("Stop name: Name not found" + " Stop id: " + lastEdge.getFrom());
 		}
 
-		// printing out the destination stop information
+		//printing out the destination stop information 
 		if (hashmap.containsKey(lastEdge.getTo())) {
 			System.out.println("Stop name: " + hashmap.get(lastEdge.getTo()) + " Stop id: " + lastEdge.getTo());
 		} else {
